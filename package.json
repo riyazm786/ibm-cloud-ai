@@ -1,0 +1,32 @@
+{
+  "name": "agentic-ai-cyberres",
+  "version": "1.0.0",
+  "description": "An AI agent that improves cyber resiliency by autonomously identifying enterprise applications and validating that the application's data is not corrupted.",
+  "keywords": [
+    "agentic"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git@github.ibm.com:efarr/agentic-ai-cyberres.git"
+  },
+  "license": "Apache-2.0",
+  "author": "Erin Farr",
+  "type": "module",
+  "main": "agent.js",
+  "scripts": {
+    "start": "npm exec tsx",
+    "test": "\"echo \\\"Error: no test specified\\\" && exit 1\""
+  },
+  "dependencies": {
+    "@google-cloud/vertexai": "^1.9.2",
+    "bee-agent-framework": "^0.0.61",
+    "beeai-framework": "^0.1.6",
+    "dotenv": "^16.4.5",
+    "groq-sdk": "^0.7.0",
+    "ollama": "^0.5.11",
+    "openai": "^4.77.0",
+    "openai-chat-tokens": "^0.2.8",
+    "pino-pretty": "^11.2.2",
+    "strip-ansi": "^7.1.0"
+  }
+}
