@@ -16,20 +16,23 @@ export const FindRunningProcessesTool = new DynamicTool({
   }),
   async handler(input) {
 
+	var returnString = new String;
 	var stdout = new String;
 
 	// do shell escape to run ps to see what processes are running.  Exclude kernel processes.
 	try {
 		stdout = execSync('ps  --ppid 2 -p 2 --deselect').toString();
 		console.log(`stdout: ${stdout}`);
+		returnString = stdout;
 	} catch (error: any) {
 		console.error(`Error: ${error.message}`);
 		if (error.stderr) {
 			console.error(`stderr: ${error.stderr.toString()}`);
-  	}
+  		}
+		returnString = "Validation Failed.  Details:\n" + error.stderr;
 	}
 
-    	return new StringToolOutput(stdout);
+    	return new StringToolOutput(returnString);
 
   },
 });
@@ -39,18 +42,20 @@ export const FindRunningProcessesTool = new DynamicTool({
  */
 export const MongoDBDataValidatorTool = new DynamicTool({
   name: "MongoDBDataValidator",
-  description: "Only validate mongodb data to ensure database is not corrupted. This tool does not validate other application data.",
+  description: "This tool validates a mongodb database to ensure the database is not corrupted. Do not use this tool to validate anything that is nto mongoDB. It can only be used if mongoDB is currently running.",
   inputSchema: z.object({
     min: z.number().int().min(0),
   }),
   async handler(input) {
 
+	var returnString = new String;
 	var stdout = new String;
 
 	// do shell escape to run mongodb commands through mongosh
 	try {
 		stdout = execSync('mongosh --file /home/defsensor/bee-orig/DataValidator.js').toString();
 		console.log(`stdout: ${stdout}`);
+		returnString = stdout;
 	} catch (error: any) {
 		console.error(`Error: ${error.message}`);
 		if (error.status) {
@@ -59,10 +64,10 @@ export const MongoDBDataValidatorTool = new DynamicTool({
 		if (error.stderr) {
 			console.error(`stderr: ${error.stderr.toString()}`);
   		}
+		returnString = "Validation Failed.  Details:\n" + error.stderr;
 	}
 
-	//  TODO: fix this so it's not always returning only stdout (but also error cases)
-    	return new StringToolOutput(stdout);
+    	return new StringToolOutput(returnString);
 
   },
 });
@@ -79,6 +84,7 @@ export const SendEmailTool = new DynamicTool({
   }),
   async handler(input) {
 
+	var returnString = new String;
 	var stdout = new String;
 	var email = getEnv("USER_EMAIL");
 
@@ -86,14 +92,16 @@ export const SendEmailTool = new DynamicTool({
 	try {
 		stdout = execSync('set -x; sendmail -t ' + email + ' << EOM\nSubject:Data Validation\n' + input.argument + '\nEOM').toString();
 		console.log(`stdout: ${stdout}`);
+		returnString = stdout;
 	} catch (error: any) {
 		console.error(`Error: ${error.message}`);
 		if (error.stderr) {
 			console.error(`stderr: ${error.stderr.toString()}`);
-  	}
+  		}
+		returnString = "Validation Failed.  Details:\n" + error.stderr;
 	}
 
-    	return new StringToolOutput(stdout);
+    	return new StringToolOutput(returnString);
 
   },
 });
@@ -110,20 +118,23 @@ export const FindWhatsRunningByPortsTool = new DynamicTool({
   }),
   async handler(input) {
 
+	var returnString = new String;
 	var stdout = new String;
 
 	// do shell escape to run netstat to see what ports are listening
 	try {
 		stdout = execSync('netstat -al').toString();
 		console.log(`stdout: ${stdout}`);
+		returnString = stdout;
 	} catch (error: any) {
 		console.error(`Error: ${error.message}`);
 		if (error.stderr) {
 			console.error(`stderr: ${error.stderr.toString()}`);
-  	}
+  		}
+		returnString = "Validation Failed.  Details:\n" + error.stderr;
 	}
 
-    	return new StringToolOutput(stdout);
+    	return new StringToolOutput(returnString);
 
   },
 });
