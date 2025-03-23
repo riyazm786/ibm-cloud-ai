@@ -18,7 +18,7 @@ const agent = new BeeAgent({
   tools: [new OpenMeteoTool(), new DuckDuckGoSearchTool(), MongoDBDataValidatorTool, FindWhatsRunningByPortsTool, FindRunningProcessesTool, SendEmailTool ],
 });
 
-const reader = createConsoleReader({ fallback: "What is the current weather in Las Vegas?" });
+const reader = createConsoleReader({ fallback: "What are the most common enterprise applications that run on Linux in the industry today?  Do not include Linux or Linux distributions in the results.  Do not identify what's currently running." });
 for await (const { prompt } of reader) {
   try {
     const response = await agent
