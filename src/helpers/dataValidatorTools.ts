@@ -1,3 +1,6 @@
+//
+// Copyright contributors to the agentic-ai-cyberres project
+//
 import { DynamicTool, StringToolOutput } from "beeai-framework/tools/base";
 import { z } from "zod";
 import { ObjectId } from "mongodb";

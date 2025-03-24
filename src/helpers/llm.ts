@@ -1,3 +1,6 @@
+//
+// Copyright contributors to the agentic-ai-cyberres project
+//
 import { ChatLLM, ChatLLMOutput } from "bee-agent-framework/llms/chat";
 import { getEnv, parseEnv } from "bee-agent-framework/internals/env";
 import { z } from "zod";

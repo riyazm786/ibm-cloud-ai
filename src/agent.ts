@@ -1,3 +1,6 @@
+//
+// Copyright contributors to the agentic-ai-cyberres project
+//
 import "dotenv/config.js";
 import { BeeAgent } from "bee-agent-framework/agents/bee/agent";
 import { FrameworkError } from "bee-agent-framework/errors";
