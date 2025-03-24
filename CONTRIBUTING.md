@@ -1,8 +1,11 @@
  
-             International Business machines, Inc.
-  Software Grant and Corporate Contributor License Agreement ("Agreement")
-         http://www.github.org/agentic-ai-cyberres/licenses/
-
+  <p align="center">International Business machines, Inc.
+  </p>
+  <p align="center">Software Grant and Corporate Contributor License Agreement ("Agreement")
+  </p>
+  <p align="center">http://www.github.org/agentic-ai-cyberres/licenses/
+  </p>
+  
 
 Thank you for your interest in IBM’s agentic-ai-cyberres project (“the
 Project"). In order to clarify the intellectual property license 
@@ -22,7 +25,7 @@ If you have not already done so, please complete and sign, then scan
 and email a pdf file of this Agreement to efarr@us.ibm.com. If
 necessary, send an original signed Agreement to:
 
- 	IBM Corp.
+      IBM Corp.
       Mail Drop P334
       2455 South Rd
       Poughkeepsie, NY 12601-5400, US
@@ -33,11 +36,17 @@ for your records.
 Corporation name:    ________________________________________________
       
 Corporation address: ________________________________________________
-    ________________________________________________
-                     ________________________________________________
+
+$~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~$ ________________________________________________
+
+$~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~$ ________________________________________________
+
+
 
 Point of Contact:    ________________________________________________
+
 E-Mail:              ________________________________________________
+
 Telephone:           _____________________ 
       
 
