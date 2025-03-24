@@ -1,3 +1,6 @@
+//
+// Copyright contributors to the agentic-ai-cyberres project
+//
 import readline from "node:readline/promises";
 import { stdin, stdout } from "node:process";
 import picocolors from "picocolors";

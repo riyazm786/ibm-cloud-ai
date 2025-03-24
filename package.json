@@ -10,7 +10,6 @@
     "url": "git@github.ibm.com:efarr/agentic-ai-cyberres.git"
   },
   "license": "Apache-2.0",
-  "author": "Erin Farr",
   "type": "module",
   "main": "agent.js",
   "scripts": {
