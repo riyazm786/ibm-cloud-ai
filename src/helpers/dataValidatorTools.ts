@@ -47,31 +47,39 @@ export const MongoDBDataValidatorTool = new DynamicTool({
   name: "MongoDBDataValidator",
   description: "This tool validates a mongodb database to ensure the database is not corrupted. Do not use this tool to validate anything that is nto mongoDB. It can only be used if mongoDB is currently running.",
   inputSchema: z.object({
-    min: z.number().int().min(0),
+    argument: z.string()
   }),
   async handler(input) {
 
 	var returnString = new String;
 	var stdout = new String;
+	let workloadToValidate: string = "mongodb";
 
-	// do shell escape to run mongodb commands through mongosh
-	try {
-		stdout = execSync('mongosh --file /home/defsensor/bee-orig/DataValidator.js').toString();
-		console.log(`stdout: ${stdout}`);
-		returnString = stdout;
-	} catch (error: any) {
-		console.error(`Error: ${error.message}`);
-		if (error.status) {
-			console.error(`Validation failed.`);
+	console.log(`argument: `+ input.argument);
+	// if argument is not mongond, then agent is trying to use this tool to validate another workload.  Don't let it.
+	if (input.argument !== workloadToValidate) {
+		console.log(input.argument + ` is not a mongoDB workload. This tool cannot be used to validate ` + input.argument);
+		returnString = "Validation Failed. Reason: " + input.argument + " cannot be used to validate " + workloadToValidate;
+	} else {
+		console.log(`Validating mongoDB workload: `+ input.argument);
+
+		// do shell escape to run mongodb commands through mongosh
+		try {
+			stdout = execSync('mongosh --file src/helpers/mongoDBDataValidator.js').toString();
+			console.log(`stdout: ${stdout}`);
+			returnString = stdout;
+		} catch (error: any) {
+			console.error(`Error: ${error.message}`);
+			if (error.status) {
+				console.error(`Validation failed.`);
+			}
+			if (error.stderr) {
+				console.error(`stderr: ${error.stderr.toString()}`);
+  			}
+			returnString = "Validation Failed.  Details:\n" + error.stderr;
 		}
-		if (error.stderr) {
-			console.error(`stderr: ${error.stderr.toString()}`);
-  		}
-		returnString = "Validation Failed.  Details:\n" + error.stderr;
 	}
-
     	return new StringToolOutput(returnString);
-
   },
 });
 
